@@ -9,8 +9,12 @@
         PORT        = 4321,
         dir         = './img/',
         app         = express(),
-        OK          = 'ok.svg',
-        ERROR       = 'error.svg',
+        SVG         = 'svg',
+        DIR         = SVG + '/',
+        EXT         = '.' + SVG,
+        OK          = DIR + 'ok' + EXT,
+        ERROR       = DIR + 'error' + EXT,
+        MOVED       = DIR + 'moved' + EXT,
         TYPE        = mime.lookup(OK);
     
     http.createServer(app).listen(PORT);
@@ -25,10 +29,18 @@
                 //response.send(res.statusCode);
                 console.log(res.statusCode);
                 response.contentType(TYPE);
-                if (res.statusCode === 200)
+                
+                switch(res.statusCode) {
+                case 200:
                     send(response, OK);
-                else
+                    break;
+                case 301:
+                    send(response, MOVED);
+                    break;
+                default:
                     send(response, ERROR);
+                    break;
+                }
             }).on('error', function(e) {
                 //response.send(e);
                 response.contentType(TYPE);
