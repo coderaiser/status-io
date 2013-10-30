@@ -16,10 +16,9 @@
     http.createServer(app).listen(PORT);
     
     console.log('server: ' + PORT);
-    
-    app.get('/', function(request, response) {
-        var host = request.query.host;
-        console.log(host);
+   
+    app.get('/*', function(request, response) {
+        var host = 'http://' + request.params[0];
         
         if (host)
             http.get(host, function(res) {
