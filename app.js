@@ -39,7 +39,7 @@
                     send(response, MOVED_IMG);
                 else
                     send(response, ERROR_IMG);
-            }).on('ERROR_IMG', function(e) {
+            }).on('error', function(e) {
                 //response.send(e);
                 response.contentType(TYPE);
                 send(response, ERROR_IMG);
