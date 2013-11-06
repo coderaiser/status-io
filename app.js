@@ -21,10 +21,17 @@
     
     http.createServer(app).listen(PORT);
     
-    console.log('server: ' + PORT);
+    console.log('server: ' + PORT + '\npid: ' + process.pid);
    
-    app.get('/*', function(request, response) {
+    app.use('/', express.static(__dirname));
+    
+    app.get('/', function(req, res) {
+        res.sendfile('README.md');
+    });
+    
+    app.get('/host/*', function(request, response) {
         var host = 'http://' + request.params[0];
+        console.log(request.params);
         
         if (host)
             http.get(host, function(res) {
