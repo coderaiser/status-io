@@ -11,16 +11,16 @@ Get the Status ![Status OK](http://status-ok.cloudcmd.io/host/status-ok.cloudcmd
 To get the status just drop this code to Markdown:
 
 ```
-  ![Status OK](http://status-ok.cloudcmd.io/host/cloudcmd.io)
+  ![Status OK](http://status-ok.cloudcmd.io/host/host.io)
 ```
 
 or Web Page.
 
 ```
-  <img alt="Status OK" src=http://status-ok.cloudcmd.io/cloudcmd.io />
+  <img alt="Status OK" src=http://status-ok.cloudcmd.io/host.io />
 ```
 
-You should change ```cloudcmd.io``` to your host.
+You should change ```host.io``` to your host.
 
 Install
 ===============
