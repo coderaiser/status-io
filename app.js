@@ -26,7 +26,7 @@
     app.use('/', express.static(__dirname));
     
     app.get('/', function(req, res) {
-        res.sendfile('README.md');
+        send(res, 'README.md', console.log.bind(console));
     });
     
     app.get('/host/*', function(request, response) {
