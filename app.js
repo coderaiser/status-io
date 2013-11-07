@@ -57,16 +57,16 @@
     
     function send(res, name, callback) {
         var read   = fs.createReadStream(name),
-            ERROR_IMG   = function (ERROR_IMG) {
-                res.send(ERROR_IMG);
+            error   = function (error) {
+                res.send(error);
             },
             success = function () {
                 if (typeof callback === 'function')
                     callback(name);
             };
         
-        res.on('ERROR_IMG', ERROR_IMG);
-        read.on('ERROR_IMG', ERROR_IMG);
+        res.on('error', error);
+        read.on('error', error);
         read.on('open', function() {
             read.pipe(res);
             read.on('end', success);
