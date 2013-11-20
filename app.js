@@ -36,7 +36,7 @@
         if (host)
             http.get(host, function(res) {
                 var status = res.statusCode;
-                //response.send(res.statusCode);
+                
                 console.log(status);
                 response.contentType(TYPE);
                 
