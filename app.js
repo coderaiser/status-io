@@ -17,7 +17,8 @@
         OK_IMG      = DIR + 'ok'    + EXT,
         ERROR_IMG   = DIR + 'error' + EXT,
         MOVED_IMG   = DIR + 'moved' + EXT,
-        TYPE        = mime.lookup(OK_IMG);
+        TYPE        = mime.lookup(OK_IMG),
+        ONE_SECOND  = 1000;
     
     http.createServer(app).listen(PORT);
     
@@ -30,28 +31,35 @@
     });
     
     app.get('/host/*', function(request, response) {
-        var host = 'http://' + request.params[0];
+        var sended,
+            host = 'http://' + request.params[0];
         console.log(request.params);
         
-        if (host)
+        if (host) {
+            response.contentType(TYPE);
+            
+            setTimeout(function() {
+                sended = true;
+                send(response, MOVED_IMG);
+            }, ONE_SECOND);
+            
             http.get(host, function(res) {
                 var status = res.statusCode;
                 
                 console.log(status);
-                response.contentType(TYPE);
-                
-                if (status === OK)
-                    send(response, OK_IMG);
-                else if(status === MOVED[0] || status === MOVED[1])
-                    send(response, MOVED_IMG);
-                else
-                    send(response, ERROR_IMG);
+                if (!sended)
+                    if (status === OK)
+                        send(response, OK_IMG);
+                    else if(status === MOVED[0] || status === MOVED[1])
+                        send(response, MOVED_IMG);
+                    else
+                        send(response, ERROR_IMG);
             }).on('error', function(e) {
                 //response.send(e);
                 response.contentType(TYPE);
                 send(response, ERROR_IMG);
             });
-        else
+        } else
             response.send('/:host');
     });
     
