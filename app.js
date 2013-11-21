@@ -39,8 +39,10 @@
             response.contentType(TYPE);
             
             setTimeout(function() {
-                sended = true;
-                send(response, MOVED_IMG);
+                if (!sended) {
+                    sended = true;
+                    send(response, MOVED_IMG);
+                }
             }, ONE_SECOND);
             
             http.get(host, function(res) {
@@ -48,6 +50,7 @@
                 
                 console.log(status);
                 if (!sended)
+                    sended = true;
                     if (status === OK)
                         send(response, OK_IMG);
                     else if(status === MOVED[0] || status === MOVED[1])
