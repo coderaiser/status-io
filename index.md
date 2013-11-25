@@ -35,5 +35,5 @@ Statuses list
 When you set status image, you could see one of this posible statuses
 
 - OK ![OK](http://status-ok.cloudcmd.io/svg/ok.svg "OK")
-- Moved ![Moved](http://status-ok.cloudcmd.io/svg/moved.svg "Moved")
+- Moved or load to long ![Moved](http://status-ok.cloudcmd.io/svg/moved.svg "Moved")
 - Error ![Error](http://status-ok.cloudcmd.io/svg/error.svg "Error")
