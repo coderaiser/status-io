@@ -7,35 +7,62 @@
         fs          = require('fs'),
         
         PORT        = 4321,
+        OK          = 200,
+        MOVED       = [301, 302],
         dir         = './img/',
         app         = express(),
-        OK          = 'ok.svg',
-        ERROR       = 'error.svg',
-        TYPE        = mime.lookup(OK);
+        SVG         = 'svg',
+        DIR         = SVG + '/',
+        EXT         = '.' + SVG,
+        OK_IMG      = DIR + 'ok'    + EXT,
+        ERROR_IMG   = DIR + 'error' + EXT,
+        MOVED_IMG   = DIR + 'moved' + EXT,
+        TYPE        = mime.lookup(OK_IMG),
+        ONE_SECOND  = 1000;
     
     http.createServer(app).listen(PORT);
     
-    console.log('server: ' + PORT);
+    console.log('server: ' + PORT + '\npid: ' + process.pid);
+   
+    app.use('/', express.static(__dirname));
     
-    app.get('/', function(request, response) {
-        var host = request.query.host;
-        console.log(host);
+    app.get('/', function(req, res) {
+        send(res, 'README.md', console.log.bind(console));
+    });
+    
+    app.get('/host/*', function(request, response) {
+        var sended,
+            host = 'http://' + request.params[0];
+        console.log(request.params);
         
-        if (host)
+        if (host) {
+            response.contentType(TYPE);
+            
+            setTimeout(function() {
+                if (!sended) {
+                    sended = true;
+                    send(response, MOVED_IMG);
+                }
+            }, ONE_SECOND);
+            
             http.get(host, function(res) {
-                //response.send(res.statusCode);
-                console.log(res.statusCode);
-                response.contentType(TYPE);
-                if (res.statusCode === 200)
-                    send(response, OK);
-                else
-                    send(response, ERROR);
+                var status = res.statusCode;
+                
+                console.log(status);
+                if (!sended)
+                    sended = true;
+                    if (status === OK)
+                        send(response, OK_IMG);
+                    else if(status === MOVED[0] || status === MOVED[1])
+                        send(response, MOVED_IMG);
+                    else
+                        send(response, ERROR_IMG);
             }).on('error', function(e) {
                 //response.send(e);
                 response.contentType(TYPE);
-                send(response, ERROR);
+                send(response, ERROR_IMG);
             });
-        else
+        } else
             response.send('/:host');
     });
     
