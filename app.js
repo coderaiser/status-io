@@ -58,7 +58,6 @@
                     else
                         send(response, ERROR_IMG);
             }).on('error', function(e) {
-                //response.send(e);
                 response.contentType(TYPE);
                 send(response, ERROR_IMG);
             });
