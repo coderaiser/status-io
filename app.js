@@ -31,32 +31,27 @@
     });
     
     app.get('/host/*', function(request, response) {
-        var sended,
-            host = 'http://' + request.params[0];
+        var host = 'http://' + request.params[0];
+        
         console.log(request.params);
         
         if (host) {
             response.contentType(TYPE);
             
-            setTimeout(function() {
-                if (!sended) {
-                    sended = true;
-                    send(response, MOVED_IMG);
-                }
-            }, ONE_SECOND);
+            request.setTimeout(ONE_SECOND, function() {
+                send(response, MOVED_IMG);
+            });
             
             http.get(host, function(res) {
                 var status = res.statusCode;
                 
                 console.log(status);
-                if (!sended)
-                    sended = true;
-                    if (status === OK)
-                        send(response, OK_IMG);
-                    else if(status === MOVED[0] || status === MOVED[1])
-                        send(response, MOVED_IMG);
-                    else
-                        send(response, ERROR_IMG);
+                if (status === OK)
+                    send(response, OK_IMG);
+                else if(status === MOVED[0] || status === MOVED[1])
+                    send(response, MOVED_IMG);
+                else
+                    send(response, ERROR_IMG);
             }).on('error', function(e) {
                 response.contentType(TYPE);
                 send(response, ERROR_IMG);
