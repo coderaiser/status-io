@@ -9,11 +9,9 @@
         PORT        = 4321,
         OK          = 200,
         MOVED       = [301, 302],
-        dir         = './img/',
         app         = express(),
-        SVG         = 'svg',
-        DIR         = SVG + '/',
-        EXT         = '.' + SVG,
+        DIR         = __dirname + '/img/',
+        EXT         = '.png',
         OK_IMG      = DIR + 'ok'    + EXT,
         ERROR_IMG   = DIR + 'error' + EXT,
         MOVED_IMG   = DIR + 'moved' + EXT,
@@ -23,7 +21,7 @@
     http.createServer(app).listen(PORT);
     
     console.log('server: ' + PORT + '\npid: ' + process.pid);
-   
+    
     app.use('/', express.static(__dirname));
     
     app.get('/', function(req, res) {
