@@ -9,21 +9,19 @@
         PORT        = 4321,
         OK          = 200,
         MOVED       = [301, 302],
-        dir         = './img/',
         app         = express(),
-        SVG         = 'svg',
-        DIR         = SVG + '/',
-        EXT         = '.' + SVG,
+        DIR         = __dirname + '/img/',
+        EXT         = '.png',
         OK_IMG      = DIR + 'ok'    + EXT,
         ERROR_IMG   = DIR + 'error' + EXT,
         MOVED_IMG   = DIR + 'moved' + EXT,
         TYPE        = mime.lookup(OK_IMG),
-        ONE_SECOND  = 1000;
+        TWO_SECONDS = 2000;
     
     http.createServer(app).listen(PORT);
     
     console.log('server: ' + PORT + '\npid: ' + process.pid);
-   
+    
     app.use('/', express.static(__dirname));
     
     app.get('/', function(req, res) {
@@ -31,34 +29,33 @@
     });
     
     app.get('/host/*', function(request, response) {
-        var sended,
-            host = 'http://' + request.params[0];
+        var host = 'http://' + request.params[0],
+            sended;
+        
         console.log(request.params);
         
         if (host) {
             response.contentType(TYPE);
             
             setTimeout(function() {
-                if (!sended) {
-                    sended = true;
-                    send(response, MOVED_IMG);
-                }
-            }, ONE_SECOND);
+                sended = true;
+                send(response, MOVED_IMG);
+            }, TWO_SECONDS);
             
             http.get(host, function(res) {
                 var status = res.statusCode;
                 
                 console.log(status);
                 if (!sended)
-                    sended = true;
                     if (status === OK)
                         send(response, OK_IMG);
                     else if(status === MOVED[0] || status === MOVED[1])
                         send(response, MOVED_IMG);
                     else
                         send(response, ERROR_IMG);
+                
+                sended = true;
             }).on('error', function(e) {
-                //response.send(e);
                 response.contentType(TYPE);
                 send(response, ERROR_IMG);
             });
