@@ -16,7 +16,7 @@ To get the status just drop this code to Markdown:
 
 or Web Page.
 
-```
+```html
   <img alt="Status OK" src=http://status-ok.cloudcmd.io/host/host.io />
 ```
 
