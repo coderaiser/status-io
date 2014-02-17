@@ -17,7 +17,7 @@ To get the status just drop this code to Markdown:
 or Web Page.
 
 ```
-  <img alt="Status OK" src=http://status-ok.cloudcmd.io/host.io />
+  <img alt="Status OK" src=http://status-ok.cloudcmd.io/host/host.io />
 ```
 
 You should change ```host.io``` to your host.
