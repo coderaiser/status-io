@@ -9,7 +9,7 @@
         "url": "git://github.com/coderaiser/status-ok.git"
     },
     "scripts": {
-        "start": "app.js"
+        "start": "status-ok.js"
     },
     "subdomain": "status-ok",
     "dependencies": {
