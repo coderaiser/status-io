@@ -14,7 +14,9 @@
     "subdomain": "status-ok",
     "dependencies": {
         "express": "3.4.x",
-        "mime" : "1.2.x"
+        "mime" : "1.2.x",
+        "util.io":"0.8.x",
+        "util-pipe":"0.8.x"
     },
     "license": "MIT",
     "engines": {
