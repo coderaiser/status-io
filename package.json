@@ -1,6 +1,6 @@
 {
     "name": "status-ok",
-    "version": "0.3.0",
+    "version": "0.4.1",
     "author": "coderaiser <mnemonic.enemy@gmail.com> (https://github.com/coderaiser)",
     "description": "status-ok - check host status",
     "homepage": "http://status-ok.cloudcmd.io",
@@ -9,12 +9,14 @@
         "url": "git://github.com/coderaiser/status-ok.git"
     },
     "scripts": {
-        "start": "app.js"
+        "start": "status-ok.js"
     },
     "subdomain": "status-ok",
     "dependencies": {
         "express": "3.4.x",
-        "mime" : "1.2.x"
+        "mime" : "1.2.x",
+        "util.io":"0.8.x",
+        "util-pipe":"0.8.x"
     },
     "license": "MIT",
     "engines": {

@@ -4,7 +4,8 @@
     var http        = require('http'),
         express     = require('express'),
         mime        = require('mime'),
-        fs          = require('fs'),
+        utilIO      = require('util.io'),
+        utilPipe    = require('util-pipe'),
         
         PORT        = 4321,
         OK          = 200,
@@ -25,7 +26,7 @@
     app.use('/', express.static(__dirname));
     
     app.get('/', function(req, res) {
-        send(res, 'README.md', console.log.bind(console));
+        sendFile(res, 'README.md', console.log.bind(console));
     });
     
     app.get('/host/*', function(request, response) {
@@ -39,7 +40,7 @@
             
             setTimeout(function() {
                 sended = true;
-                send(response, MOVED_IMG);
+                sendFile(response, MOVED_IMG);
             }, TWO_SECONDS);
             
             http.get(host, function(res) {
@@ -48,36 +49,31 @@
                 console.log(status);
                 if (!sended)
                     if (status === OK)
-                        send(response, OK_IMG);
+                        sendFile(response, OK_IMG);
                     else if(status === MOVED[0] || status === MOVED[1])
-                        send(response, MOVED_IMG);
+                        sendFile(response, MOVED_IMG);
                     else
-                        send(response, ERROR_IMG);
+                        sendFile(response, ERROR_IMG);
                 
                 sended = true;
-            }).on('error', function(e) {
+            }).on('error', function() {
                 response.contentType(TYPE);
-                send(response, ERROR_IMG);
+                sendFile(response, ERROR_IMG);
             });
         } else
             response.send('/:host');
     });
     
-    function send(res, name, callback) {
-        var read   = fs.createReadStream(name),
-            error   = function (error) {
-                res.send(error);
-            },
-            success = function () {
-                if (typeof callback === 'function')
-                    callback(name);
-            };
-        
-        res.on('error', error);
-        read.on('error', error);
-        read.on('open', function() {
-            read.pipe(res);
-            read.on('end', success);
+    function sendFile(res, name, callback) {
+        utilPipe.create({
+            from    : name,
+            write   : res,
+            callback: function(error) {
+                if (error)
+                    res.send(error, 404);
+                else
+                    utilIO.exec(callback, name);
+            }
         });
     }
 })();
