@@ -1,26 +1,26 @@
 {
-    "name": "status-ok",
-    "version": "0.4.1",
-    "author": "coderaiser <mnemonic.enemy@gmail.com> (https://github.com/coderaiser)",
-    "description": "status-ok - check host status",
-    "homepage": "http://status-ok.cloudcmd.io",
-    "repository": {
-        "type": "git",
-        "url": "git://github.com/coderaiser/status-ok.git"
-    },
-    "scripts": {
-        "start": "status-ok.js"
-    },
-    "subdomain": "status-ok",
-    "dependencies": {
-        "express": "3.4.x",
-        "mime" : "1.2.x",
-        "util.io":"0.8.x",
-        "util-pipe":"0.8.x"
-    },
-    "license": "MIT",
-    "engines": {
-        "node": ">=0.4.x"
-    },
-    "main": "app.js"
+  "name": "status-ok",
+  "version": "0.5.0",
+  "author": "coderaiser <mnemonic.enemy@gmail.com> (https://github.com/coderaiser)",
+  "description": "status-ok - check host status",
+  "homepage": "http://status-ok.cloudcmd.io",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/coderaiser/status-ok.git"
+  },
+  "scripts": {
+    "start": "status-ok.js"
+  },
+  "subdomain": "status-ok",
+  "dependencies": {
+    "express": "3.4.x",
+    "mime": "1.2.x",
+    "pipe-io": "~0.9.x",
+    "util-io": "~1.1.x"
+  },
+  "license": "MIT",
+  "engines": {
+    "node": ">=0.4.x"
+  },
+  "main": "status-ok.js"
 }
