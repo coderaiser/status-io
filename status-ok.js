@@ -4,8 +4,8 @@
     var http        = require('http'),
         express     = require('express'),
         mime        = require('mime'),
-        utilIO      = require('util.io'),
-        utilPipe    = require('util-pipe'),
+        utilIO      = require('util-io'),
+        pipeIO      = require('pipe-io'),
         
         PORT        = 4321,
         OK          = 200,
@@ -65,15 +65,11 @@
     });
     
     function sendFile(res, name, callback) {
-        utilPipe.create({
-            from    : name,
-            write   : res,
-            callback: function(error) {
-                if (error)
-                    res.send(error, 404);
-                else
-                    utilIO.exec(callback, name);
-            }
+        pipeIO.create(name, res, function(error) {
+            if (error)
+                res.send(error, 404);
+            else
+                utilIO.exec(callback, name);
         });
     }
 })();
