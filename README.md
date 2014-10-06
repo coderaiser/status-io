@@ -1,7 +1,7 @@
-Status OK [![NPM version][NPMIMGURL]][NPMURL]
+Status IO [![NPM version][NPMIMGURL]][NPMURL]
 ===============
-[NPMIMGURL]:                https://badge.fury.io/js/status-ok.png
-[NPM_INFO_IMG]:             https://nodei.co/npm/status-ok.png?downloads=true&&stars
-[NPMURL]:                   https://npmjs.org/package/status-ok "npm"
+[NPMIMGURL]:                https://badge.fury.io/js/status-io.png
+[NPM_INFO_IMG]:             https://nodei.co/npm/status-io.png?downloads=true&&stars
+[NPMURL]:                   https://npmjs.org/package/status-io "npm"
 
-[Status OK](http://coderaiser.github.io/status-ok "Status OK"). Check host status.
+[Status IO](http://coderaiser.github.io/status-io "Status IO"). Check host status.
