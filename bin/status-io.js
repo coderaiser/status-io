@@ -12,19 +12,20 @@
         OK          = 200,
         MOVED       = [301, 302],
         app         = express(),
-        DIR         = path.normalize(__dirname + '/../img/'),
+        DIR         = path.normalize(__dirname + '/../'),
+        DIR_IMG     = DIR + 'img/',
         EXT         = '.png',
-        OK_IMG      = DIR + 'ok'    + EXT,
-        ERROR_IMG   = DIR + 'error' + EXT,
-        MOVED_IMG   = DIR + 'moved' + EXT,
-        TYPE        = mime.lookup(OK_IMG),
+        IMG_OK      = DIR_IMG + 'ok'    + EXT,
+        IMG_ERROR   = DIR_IMG + 'error' + EXT,
+        IMG_MOVED   = DIR_IMG + 'moved' + EXT,
+        TYPE        = mime.lookup(IMG_OK),
         TWO_SECONDS = 2000;
     
     http.createServer(app).listen(PORT);
     
     console.log('server: ' + PORT + '\npid: ' + process.pid);
     
-    app.use('/', express.static(__dirname));
+    app.use('/', express.static(DIR));
     
     app.get('/', function(req, res) {
         sendFile(res, 'README.md', console.log.bind(console));
@@ -41,7 +42,7 @@
             
             setTimeout(function() {
                 sended = true;
-                sendFile(response, MOVED_IMG);
+                sendFile(response, IMG_MOVED);
             }, TWO_SECONDS);
             
             http.get(host, function(res) {
@@ -50,16 +51,16 @@
                 console.log(status);
                 if (!sended)
                     if (status === OK)
-                        sendFile(response, OK_IMG);
+                        sendFile(response, IMG_OK);
                     else if(status === MOVED[0] || status === MOVED[1])
-                        sendFile(response, MOVED_IMG);
+                        sendFile(response, IMG_MOVED);
                     else
-                        sendFile(response, ERROR_IMG);
+                        sendFile(response, IMG_ERROR);
                 
                 sended = true;
             }).on('error', function() {
                 response.contentType(TYPE);
-                sendFile(response, ERROR_IMG);
+                sendFile(response, IMG_ERROR);
             });
         } else
             response.send('/:host');
