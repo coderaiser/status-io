@@ -1,23 +1,23 @@
-Status OK [![NPM version][NPMIMGURL]][NPMURL]
+Status IO [![NPM version][NPMIMGURL]][NPMURL]
 ===============
 [NPMIMGURL]:                https://badge.fury.io/js/status-ok.png
 [NPM_INFO_IMG]:             https://nodei.co/npm/status-ok.png?downloads=true&&stars
 [NPMURL]:                   https://npmjs.org/package/status-ok "npm"
 
-[Status OK](http://coderaiser.github.io/status-ok "Status OK"). Check host status.
+[Status IO](http://coderaiser.github.io/status-io "Status IO"). Check host status.
 
-Get the Status ![Status OK](http://status-ok.cloudcmd.io/host/status-ok.cloudcmd.io/ "Status")
+Get the Status ![Status OK](http://status-io.cloudcmd.io/host/status-io.cloudcmd.io/ "Status")
 ===============
 To get the status just drop this code to Markdown:
 
 ```
-  ![Status OK](http://status-ok.cloudcmd.io/host/host.io)
+  ![Status IO](http://status-io.cloudcmd.io/host/host.io)
 ```
 
 or Web Page.
 
 ```html
-  <img alt="Status OK" src=http://status-ok.cloudcmd.io/host/host.io />
+  <img alt="Status IO" src=http://status-io.cloudcmd.io/host/host.io />
 ```
 
 You should change ```host.io``` to your host.
@@ -30,6 +30,6 @@ Statuses list
 ===============
 When you set status image, you could see one of this posible statuses
 
-- ![OK](http://status-ok.cloudcmd.io/img/ok.png "OK") OK
-- ![Moved](http://status-ok.cloudcmd.io/img/moved.png "Moved") Moved or load to long
-- ![Error](http://status-ok.cloudcmd.io/img/error.png "Error") Error
+- ![OK](http://status-io.cloudcmd.io/img/ok.png "OK") OK
+- ![Moved](http://status-io.cloudcmd.io/img/moved.png "Moved") Moved or load to long
+- ![Error](http://status-io.cloudcmd.io/img/error.png "Error") Error
