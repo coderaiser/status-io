@@ -3,6 +3,7 @@
     
     var http        = require('http'),
         path        = require('path'),
+        url         = require('url'),
         express     = require('express'),
         mime        = require('mime'),
         utilIO      = require('util-io'),
@@ -32,12 +33,16 @@
     });
     
     app.get('/host/*', function(request, response) {
-        var host = 'http://' + request.params[0],
+        var options,
+            addr    = request.params[0],
+            host    = 'http://' + addr,
             sended;
         
         console.log(request.params);
         
-        if (host) {
+        if (!addr) {
+            response.send('/:host');
+        } else {
             response.contentType(TYPE);
             
             setTimeout(function() {
@@ -45,7 +50,10 @@
                 sendFile(response, IMG_MOVED);
             }, TWO_SECONDS);
             
-            http.get(host, function(res) {
+            options = url.parse(host);
+            options.method = 'HEAD';
+            
+            http.request(options, function(res) {
                 var status = res.statusCode;
                 
                 console.log(status);
@@ -61,9 +69,8 @@
             }).on('error', function() {
                 response.contentType(TYPE);
                 sendFile(response, IMG_ERROR);
-            });
-        } else
-            response.send('/:host');
+            }).end();
+        }
     });
     
     function sendFile(res, name, callback) {
