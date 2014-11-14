@@ -18,6 +18,8 @@
     
     console.log('server: ' + PORT + '\npid: ' + process.pid);
     
+    app.use('/', express.static(DIR));
+      
     app.get('/', function(req, res) {
         sendFile(res, DIR + 'HELP.md');
     });
