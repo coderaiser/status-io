@@ -9,11 +9,12 @@
     "url": "git://github.com/coderaiser/status-io.git"
   },
   "scripts": {
-    "start": "bin/status-io.js"
+    "start": "bin/status.js"
   },
   "subdomain": "status-io",
   "dependencies": {
     "express": "^4.9.8",
+    "files-io": "^1.2.0",
     "mime": "^1.2.11",
     "pipe-io": "^0.9.6",
     "util-io": "^1.4.0"
@@ -23,6 +24,7 @@
     "node": ">=0.10"
   },
   "bin": {
-    "status-io": "bin/status-io.js"
-  }
+    "status-io": "bin/status.js"
+  },
+  "main": "lib/status.js"
 }
