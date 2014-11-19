@@ -1,13 +1,13 @@
 markdown        : redcarpet
-name            : Status OK
-title           : Status OK
+name            : Status IO
+title           : Status IO
 tagLine         : Check host status
 viewOn          : View Project on
 download        : Download
 maintainedBy    : This project is maintained by
 yandex          : 48e59eacd66f1bbd
 ga              : UA-33536569-5
-canonical       : coderaiser.github.io/status-ok
-repoName        : coderaiser/status-ok/edit/dev/HELP.md
+canonical       : coderaiser.github.io/status-io
+repoName        : coderaiser/status-io/edit/master/HELP.md
 improveText     : "Find typo? Help fix it."
-repoSource      : coderaiser/status-ok
+repoSource      : coderaiser/status-io
