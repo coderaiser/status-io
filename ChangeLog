@@ -1,3 +1,14 @@
+2015.12.07, v1.0.0
+
+feature:
+- (package) pipe-io: ~ -> ^
+- (package) node: 0.6 -> 0.12
+- (package) taus v1.1.0
+- (package) mime v1.3.4
+- (package) files-io v1.2.6
+- (package) express v4.13.3
+
+
 2015.08.17, v0.8.2
 
 feature:
