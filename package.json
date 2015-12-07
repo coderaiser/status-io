@@ -14,7 +14,7 @@
   "subdomain": "status-io",
   "dependencies": {
     "express": "^4.13.3",
-    "files-io": "~1.2.0",
+    "files-io": "^1.2.6",
     "mime": "~1.2.11",
     "pipe-io": "~1.2.0",
     "taus": "~1.0.0"
