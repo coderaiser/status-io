@@ -1,0 +1,15 @@
+[Unit]
+Description=Status IO
+ 
+[Service]
+TimeoutStartSec=0
+Restart=always
+User=coderaiser
+
+WorkingDirectory=/home/coderaiser/status-io
+ 
+ExecStart=/home/coderaiser/.nvm/versions/node/v6.6.0/bin/node bin/status.js
+ 
+[Install]
+WantedBy=multi-user.target
+
