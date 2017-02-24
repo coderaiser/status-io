@@ -2,35 +2,35 @@
 
 'use strict';
 
-var http        = require('http'),
-    express     = require('express'),
-    files       = require('files-io'),
-    
-    DIR         = __dirname + '/../',
-    
-    status      = require('../lib/status-img'),
-    
-    PORT        = 4321,
-    app         = express();
+var http = require('http');
+var express = require('express');
+var files = require('files-io');
+
+var DIR = __dirname + '/../';
+
+var status = require('../lib/status-img');
+
+var PORT = 4321;
+var app = express();
 
 http.createServer(app).listen(PORT);
 
 console.log('server: ' + PORT + '\npid: ' + process.pid);
 
 app.use('/', express.static(DIR));
-  
+
 app.get('/', function(req, res) {
     sendFile(res, DIR + 'HELP.md');
 });
 
 app.get('/host(/*)?', function(request, response) {
-    var addr    = request.params[1],
-        host    = 'http://' + addr;
+    var addr = request.params[1];
+    var host = 'http://' + addr;
     
     if (!addr)
-        response.send('/host/:address');
-    else
-        status(host, response);
+        return response.send('/host/:address');
+    
+    status(host, response);
 });
 
 function sendFile(res, name) {
