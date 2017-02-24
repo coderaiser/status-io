@@ -8,7 +8,7 @@ User=coderaiser
 
 WorkingDirectory=/home/coderaiser/status-io
  
-ExecStart=/home/coderaiser/.nvm/versions/node/v7.0.0/bin/node bin/status.js
+ExecStart=/home/coderaiser/.nvm/versions/node/v7.6.0/bin/node bin/status.js
  
 [Install]
 WantedBy=multi-user.target
