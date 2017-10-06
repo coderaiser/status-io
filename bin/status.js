@@ -2,16 +2,15 @@
 
 'use strict';
 
-var http = require('http');
-var express = require('express');
-var files = require('files-io');
+const http = require('http');
+const express = require('express');
+const files = require('files-io');
 
-var DIR = __dirname + '/../';
+const status = require('../lib/status-img');
 
-var status = require('../lib/status-img');
-
-var PORT = 4321;
-var app = express();
+const DIR = __dirname + '/../';
+const PORT = 4321;
+const app = express();
 
 http.createServer(app).listen(PORT);
 
@@ -19,13 +18,13 @@ console.log('server: ' + PORT + '\npid: ' + process.pid);
 
 app.use('/', express.static(DIR));
 
-app.get('/', function(req, res) {
+app.get('/', (req, res) => {
     sendFile(res, DIR + 'HELP.md');
 });
 
-app.get('/host(/*)?', function(request, response) {
-    var addr = request.params[1];
-    var host = 'http://' + addr;
+app.get('/host(/*)?', (request, response) => {
+    const addr = request.params[1];
+    const host = 'http://' + addr;
     
     if (!addr)
         return response.send('/host/:address');
@@ -34,7 +33,7 @@ app.get('/host(/*)?', function(request, response) {
 });
 
 function sendFile(res, name) {
-    files.pipe(name, res, function(error) {
+    files.pipe(name, res, (error) => {
         if (error)
             res.send(error.message);
     });
