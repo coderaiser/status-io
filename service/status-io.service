@@ -7,8 +7,10 @@ Restart=always
 User=coderaiser
 
 WorkingDirectory=/home/coderaiser/status-io
+
+Environment=NODE_VERSION=node
  
-ExecStart=/home/coderaiser/.bin/node.js /home/coderaiser/status-io/bin/status.js
+ExecStart=/home/coderaiser/.nvm/nvm-exec /home/coderaiser/status-io/bin/status.js
  
 [Install]
 WantedBy=multi-user.target
