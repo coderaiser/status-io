@@ -1,3 +1,13 @@
+2018.05.02, v2.0.1
+
+fix:
+- (service) start with nvm-exec
+- (service) ExecStart
+
+feature:
+- (package) files-io v2.0.0
+
+
 2017.10.06, v2.0.0
 
 fix:
