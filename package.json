@@ -9,7 +9,9 @@
     "url": "git://github.com/coderaiser/status-io.git"
   },
   "scripts": {
-    "start": "bin/status.js"
+    "start": "madrun start",
+    "lint": "madrun lint",
+    "fix:lint": "madrun fix:lint"
   },
   "subdomain": "status-io",
   "dependencies": {
@@ -25,5 +27,12 @@
   "bin": {
     "status-io": "bin/status.js"
   },
-  "main": "lib/status.js"
+  "main": "lib/status.js",
+  "devDependencies": {
+    "eslint": "^6.2.2",
+    "eslint-plugin-node": "^9.1.0",
+    "eslint-plugin-putout": "^2.0.0",
+    "madrun": "^2.5.0",
+    "putout": "^5.8.0"
+  }
 }
